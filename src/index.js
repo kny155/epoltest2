@@ -1,10 +1,13 @@
 import Koa from 'koa';
 import dotenv from 'dotenv';
 
-import { routes, allowedMethods } from './routes/users';
+import { connectDb } from './model';
+import { routes, allowedMethods } from './routes/routes';
+
+connectDb();
+dotenv.config();
 
 const app = new Koa();
-dotenv.config();
 const port = process.env.PORT;
 
 app.use(routes());
