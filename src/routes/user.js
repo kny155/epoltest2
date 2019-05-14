@@ -7,7 +7,6 @@ import userController from '../controllers/userController'
 const router = new Router();
 const koaBody = convert(KoaBody());
 
-
 router
   .get('/users', userController.read)
   .get('/users/:id', userController.readById)
