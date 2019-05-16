@@ -15,6 +15,8 @@ externalDocs:
 tags:
 - name: users
   description: Operations about user
+- name: auth
+  description: Operations for Authentication
 paths:
   /users:
     post:
@@ -31,8 +33,7 @@ paths:
         200:
           description: successful operation'
           schema:
-            items:
-              $ref: '#/definitions/User'
+            $ref: '#/definitions/User'
         405:
           description: "Invalid input"
     get:
@@ -45,6 +46,8 @@ paths:
           schema:
             items:
               $ref: '#/definitions/User'
+      security:
+      - api_key: []
   /users/{userId}:
     get:
       tags:
@@ -61,11 +64,13 @@ paths:
         200:
           description: successful operation
           schema:
-              $ref: '#/definitions/User'
+            $ref: '#/definitions/User'
         400:
           description: Invalid userId supplied
         404:
           description: User not found
+      security:
+      - api_key: []
     put:
       tags:
       - users
@@ -86,12 +91,13 @@ paths:
         200:
           description: successful operation
           schema:
-            items:
-              $ref: '#/definitions/User'
+            $ref: '#/definitions/User'
         400:
           description: Invalid user supplied
         404:
           description: User not found
+      security:
+      - api_key: []
     delete:
       tags:
       - users
@@ -113,6 +119,38 @@ paths:
           description: Invalid username supplied
         404:
           description: User not found
+      security:
+      - api_key: []
+  /login:
+    post:
+      tags:
+      - auth
+      summary: Login user
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          type: object
+          properties:
+            email:
+              type: string
+            password:
+              type: string
+        required: true
+      responses:
+        200:
+          description: successful operation'
+          schema:
+            properties:
+              token:
+                type: string
+        405:
+          description: "Invalid input"
+securityDefinitions:
+  api_key:
+    type: "apiKey"
+    name: "Authorization"
+    in: "header"
 definitions:
     CreateUser:
       type: object
@@ -122,6 +160,8 @@ definitions:
         lastName:
           type: string
         email:
+          type: string
+        password:
           type: string
         organizationName:
           type: string
@@ -135,6 +175,8 @@ definitions:
         lastName:
           type: string
         email:
+          type: string
+        password:
           type: string
         organizationName:
           type: string
