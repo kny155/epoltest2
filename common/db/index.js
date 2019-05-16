@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-const users = require('./data/user.json')
+const users = require('./data/users.json')
 
 mongoose.connect(process.env.DATABASE_URL, {
 	useNewUrlParser: true,
