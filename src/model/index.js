@@ -1,12 +1,10 @@
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
+import {DATABASE_URL} from '../../config.json'
 
 import User from './user';
 
-dotenv.config();
-
 const connectDb = () => {
-	return mongoose.connect(process.env.DATABASE_URL, {
+	return mongoose.connect(DATABASE_URL, {
 		useNewUrlParser: true,
 		useFindAndModify: false,
 	});

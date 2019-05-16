@@ -1,7 +1,7 @@
 [
     {"firstName": "Nikita", "lastName": "Kuznetsov", "email": "kny.5298@gmail.com", "password": "05021998", "organizationName": "bstu" },
     {"firstName": "Kirill", "lastName": "Valushko", "email": "kkm@gmail.com", "password": "keril123", "organizationName": "epol" },
-    {"firstName": "Lena", "lastName": "Kovolchuk", "email": "k.lena@mail.ru", "password": "lenalena", "organizationName": "bstu" },
+    {"firstName": "Lena", "lastName": "Kovolchuk", "email": "k.lena@mail.ru", "password": "lenalena", "organizationName": "bstu"},
     {"firstName": "Alex", "lastName": "Semchinko", "email": "alex94@gmail.com", "password": "alexqwerty", "organizationName": "gefest" },
     {"firstName": "Andrey", "lastName": "Varlamov", "email": "Var.And69@tut.by", "password": "66666666", "organizationName": "jofre" },
     {"firstName": "Pavel", "lastName": "Scuratovec", "email": "p.scur5@gmail.com", "password": "pasha555", "organizationName": "bstu" },

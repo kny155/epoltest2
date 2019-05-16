@@ -2,7 +2,6 @@ swagger: "2.0"
 info:
   title: Epol Test
   description: 'This is a sample server '
-  termsOfService: http://swagger.io/terms/
   contact:
     email: kny.5298@gmail.com
   license:
@@ -34,8 +33,12 @@ paths:
           description: successful operation'
           schema:
             $ref: '#/definitions/User'
+        401:
+          $ref: '#/responses/UnauthorizedError'
         405:
           description: "Invalid input"
+      security:
+      - api_key: []
     get:
       tags:
       - users
@@ -46,6 +49,8 @@ paths:
           schema:
             items:
               $ref: '#/definitions/User'
+        401:
+          $ref: '#/responses/UnauthorizedError'
       security:
       - api_key: []
   /users/{userId}:
@@ -67,6 +72,8 @@ paths:
             $ref: '#/definitions/User'
         400:
           description: Invalid userId supplied
+        401:
+          $ref: '#/responses/UnauthorizedError'
         404:
           description: User not found
       security:
@@ -94,6 +101,8 @@ paths:
             $ref: '#/definitions/User'
         400:
           description: Invalid user supplied
+        401:
+          $ref: '#/responses/UnauthorizedError'
         404:
           description: User not found
       security:
@@ -117,6 +126,8 @@ paths:
               $ref: '#/definitions/User'
         400:
           description: Invalid username supplied
+        401:
+          $ref: '#/responses/UnauthorizedError'
         404:
           description: User not found
       security:
@@ -146,6 +157,9 @@ paths:
                 type: string
         405:
           description: "Invalid input"
+responses:
+  UnauthorizedError:
+    description: API key is missing or invalid
 securityDefinitions:
   api_key:
     type: "apiKey"
@@ -180,5 +194,3 @@ definitions:
           type: string
         organizationName:
           type: string
-        __v:
-          type: integer
