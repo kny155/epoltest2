@@ -1,0 +1,12 @@
+[
+    {"firstName": "Nikita", "lastName": "Kuznetsov", "email": "kny.5298@gmail.com", "password": "05021998", "organizationName": "bstu" },
+    {"firstName": "Kirill", "lastName": "Valushko", "email": "kkm@gmail.com", "password": "keril123", "organizationName": "epol" },
+    {"firstName": "Lena", "lastName": "Kovolchuk", "email": "k.lena@mail.ru", "password": "lenalena", "organizationName": "bstu" },
+    {"firstName": "Alex", "lastName": "Semchinko", "email": "alex94@gmail.com", "password": "alexqwerty", "organizationName": "gefest" },
+    {"firstName": "Andrey", "lastName": "Varlamov", "email": "Var.And69@tut.by", "password": "66666666", "organizationName": "jofre" },
+    {"firstName": "Pavel", "lastName": "Scuratovec", "email": "p.scur5@gmail.com", "password": "pasha555", "organizationName": "bstu" },
+    {"firstName": "Ivan", "lastName": "Ivanov", "email": "ivan1753@gmil.com", "password": "ivanivan", "organizationName": "epam" },
+    {"firstName": "Kostia", "lastName": "Makarevich", "email": "kokoma@mail.ru", "password": "komakoma123", "organizationName": "stim" },
+    {"firstName": "Misha", "lastName": "Moisiuk", "email": "mmm2019@gmail.com", "password": "mishka765", "organizationName": "armia" },
+    {"firstName": "Kolia", "lastName": "Makarevich", "email": "makar.kolia@yandex.ru", "password": "123kolia321", "organizationName": "jofre" }
+]
