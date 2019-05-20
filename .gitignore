@@ -1,3 +1,6 @@
 api/node_modules/
 api/.vscode/
 api/package-lock.json
+ui/node_modules/
+ui/.vscode/
+ui/package-lock.json
