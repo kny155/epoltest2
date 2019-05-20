@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import {DATABASE_URL} from '../../config.json'
+import { DATABASE_URL } from '../../config.json';
 
 import User from './user';
 

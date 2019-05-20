@@ -7,7 +7,7 @@ import bodyParser from 'koa-bodyparser';
 import confPass from './config/password';
 import { connectDb } from './model';
 import { routes, allowedMethods } from './routes/routes';
-import {PORT} from '../config.json'
+import { PORT } from '../config.json';
 
 connectDb();
 confPass(passport);

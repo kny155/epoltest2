@@ -145,8 +145,10 @@ paths:
           properties:
             email:
               type: string
+              required: true
             password:
               type: string
+              required: true
         required: true
       responses:
         200:
@@ -155,8 +157,28 @@ paths:
             properties:
               token:
                 type: string
+              user:
+                type: object
+        401:
+          $ref: '#/responses/UnauthorizedError'
         405:
           description: "Invalid input"
+  /relogin:
+    get:
+      tags:
+      - auth
+      summary: Check token
+      responses:
+        200:
+          description: Token Valid'
+          schema:
+            properties:
+              user:
+                type: object
+        401:
+          $ref: '#/responses/UnauthorizedError'
+      security:
+      - api_key: []
 responses:
   UnauthorizedError:
     description: API key is missing or invalid

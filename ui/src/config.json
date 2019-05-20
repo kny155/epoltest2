@@ -1,0 +1,13 @@
+{
+    "REGEXP": {
+        "email": ".+@.+..+",
+        "password": "^(?=.*).{8,20}$"
+    },
+    "MESSAGE": {
+        "ERROR": {
+            "EMAIL": "Wrong email formant",
+            "PASSWORD": "Password must be more than 8 characters",
+            "NOT_USER": "User is not found"
+        }
+    }
+}
