@@ -3,7 +3,9 @@ import { createStore } from 'redux';
 import reducer from '../reducers';
 
 const initialState = {
-	auth: false,
+    authenticated: false,
+    user: {},
+    markers: [],
 };
 
 const store = createStore(reducer, initialState);

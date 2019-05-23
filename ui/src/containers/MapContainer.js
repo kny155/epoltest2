@@ -1,24 +1,24 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import App from '../components/App';
-import { relogin } from '../actions';
+import Map from '../components/Map';
+import { addMarkers } from '../actions';
 
 const mapDispatchToProps = dispatch => {
     return {
-        onRelogin: () => relogin()(dispatch),
+        addMarkers: (x, y) => addMarkers(x, y)(dispatch),
     };
 };
 
 const mapStateToProps = state => ({
-    authenticated: state.authenticated,
+    markers: state.markers,
 });
 
-const AppContainer = withRouter(
+const MapContainer = withRouter(
     connect(
         mapStateToProps,
         mapDispatchToProps,
-    )(App),
+    )(Map),
 );
 
-export default AppContainer;
+export default MapContainer;

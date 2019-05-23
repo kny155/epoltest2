@@ -6,16 +6,13 @@ import { Provider } from 'react-redux';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import store from './store';
-import { relogin } from './actions';
-
-relogin()(store.dispatch);
 
 ReactDOM.render(
-	<Provider store={store}>
-		<BrowserRouter>
-			<CssBaseline />
-			<App />
-		</BrowserRouter>
-	</Provider>,
-	document.getElementById('root'),
+    <Provider store={store}>
+        <BrowserRouter>
+            <CssBaseline />
+            <App />
+        </BrowserRouter>
+    </Provider>,
+    document.getElementById('root'),
 );

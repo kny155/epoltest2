@@ -1,33 +1,49 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
-	BrowserRouter as Router,
-	Route,
-	Switch,
-	Redirect,
+    BrowserRouter as Router,
+    Route,
+    Switch,
+    Redirect,
 } from 'react-router-dom';
 
 import Main from '../Main';
 import LoginContainer from '../../containers/LoginContainer';
-import { commonService } from '../../services';
 
-const App = () => {
-	const checkToken = !!commonService.getToken();
+const App = ({ authenticated, onRelogin }) => {
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        relogin();
+    }, []);
 
-	return (
-		<Router>
-			<Switch>
-				<Route
-					path="/login"
-					render={() => (checkToken ? <Redirect to="/" /> : <LoginContainer />)}
-				/>
-				<Route
-					path="/"
-					render={() => (checkToken ? <Main /> : <Redirect to="/login" />)}
-				/>
-			</Switch>
-		</Router>
-	);
+    const relogin = async () => {
+        await onRelogin();
+        setLoading(false);
+    };
+
+    return (
+        <Router>
+            {!loading && (
+                <Switch>
+                    <Route
+                        path="/login"
+                        render={() =>
+                            authenticated ? (
+                                <Redirect to="/" />
+                            ) : (
+                                <LoginContainer />
+                            )
+                        }
+                    />
+                    <Route
+                        path="/"
+                        render={() =>
+                            authenticated ? <Main /> : <Redirect to="/login" />
+                        }
+                    />
+                </Switch>
+            )}
+        </Router>
+    );
 };
-
 export default App;

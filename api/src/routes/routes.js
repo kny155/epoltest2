@@ -1,7 +1,11 @@
 import Router from 'koa-router';
 import passport from 'koa-passport';
 
-import { authController, userController } from '../controllers';
+import {
+	authController,
+	userController,
+	crimeController,
+} from '../controllers';
 
 const auth = (ctx, next) =>
 	passport.authenticate('jwt', { session: false }, async (err, user) => {
@@ -20,7 +24,9 @@ router
 	.put('/users/:id', auth, userController.update)
 	.delete('/users/:id', auth, userController.delete)
 	.post('/login', authController.login)
-	.get('/relogin', authController.relogin);
+	.get('/relogin', authController.relogin)
+	.post('/crimeslen', auth, crimeController.readLen)
+	.post('/crimes', auth, crimeController.read);
 
 export const routes = () => router.routes();
 export const allowedMethods = () => router.allowedMethods();

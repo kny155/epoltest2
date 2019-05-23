@@ -16,6 +16,8 @@ tags:
   description: Operations about user
 - name: auth
   description: Operations for Authentication
+- name: crimes
+  description: Operations for Crimes
 paths:
   /users:
     post:
@@ -175,6 +177,70 @@ paths:
             properties:
               user:
                 type: object
+        401:
+          $ref: '#/responses/UnauthorizedError'
+      security:
+      - api_key: []
+  /crimes:
+    post:
+      tags:
+      - crimes
+      summary: Check token
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          type: object
+          properties:
+            topY:
+              type: number
+              required: true
+            botY:
+              type: number
+              required: true
+            leftX:
+              type: number
+              required: true
+            rightX:
+              type: number
+              required: true
+        required: true
+      responses:
+        200:
+          description: Crimes'
+          schema:
+            items:
+              type: object
+
+        401:
+          $ref: '#/responses/UnauthorizedError'
+      security:
+      - api_key: []
+  /crimeslen:
+    post:
+      tags:
+      - crimes
+      summary: Check token
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          type: object
+          properties:
+            x:
+              type: number
+              required: true
+            y:
+              type: number
+              required: true
+        required: true
+      responses:
+        200:
+          description: Crimes'
+          schema:
+            items:
+              type: object
+
         401:
           $ref: '#/responses/UnauthorizedError'
       security:
