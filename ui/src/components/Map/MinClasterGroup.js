@@ -26,10 +26,10 @@ const MinClasterGroup = ({ bounds }) => {
 
         if (
             !(
-                topY < boundsCrimes[0] &&
-                bootomY > boundsCrimes[1] &&
-                leftX > boundsCrimes[2] &&
-                rightX < boundsCrimes[3]
+                topY <= boundsCrimes[0] &&
+                bootomY >= boundsCrimes[1] &&
+                leftX >= boundsCrimes[2] &&
+                rightX <= boundsCrimes[3]
             )
         ) {
             setBoundsCrimes([topY, bootomY, leftX, rightX]);

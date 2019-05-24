@@ -15,7 +15,7 @@ export const logout = () => {
 
 export const login = (username, password, remember) => {
     return async dispatch => {
-        const { token, user } = await authService.login(username, password);
+        const { token } = await authService.login(username, password);
         axios.defaults.headers.common['Authorization'] = token;
         if (remember) {
             localStorage.setItem('user', JSON.stringify(token));
@@ -32,7 +32,7 @@ export const relogin = () => {
         axios.defaults.headers.common['Authorization'] = token;
         if (token) {
             try {
-                const { user } = await authService.relogin();
+                await authService.relogin();
                 dispatch({ type: LOGIN });
             } catch {
                 localStorage.removeItem('user');

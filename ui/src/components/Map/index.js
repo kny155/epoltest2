@@ -14,9 +14,8 @@ const styles = {
 };
 
 const Map = ({ classes, markers, addMarkers }) => {
-    const [zoom, setZoom] = useState(false);
     const mapRef = useRef();
-    const [bounds, setBounds] = useState([0, 0, 0, 0]);
+    const [bounds, setBounds] = useState([0, 0, 0, 0, 12]);
     useEffect(() => {
         onMapShift();
     }, []);
@@ -24,18 +23,16 @@ const Map = ({ classes, markers, addMarkers }) => {
     const onMapShift = async () => {
         const el = mapRef.current.leafletElement;
         const zoom = el._zoom;
+
         const bounds = el.getBounds();
         const northEast = bounds._northEast;
         const southWest = bounds._southWest;
-
         const topY = northEast.lat;
         const bootomY = southWest.lat;
         const leftX = southWest.lng;
         const rightX = northEast.lng;
 
-        setBounds([topY, bootomY, leftX, rightX]);
-
-        setZoom(zoom >= 14);
+        await setBounds([topY, bootomY, leftX, rightX, zoom]);
     };
 
     return (
@@ -44,12 +41,12 @@ const Map = ({ classes, markers, addMarkers }) => {
             center={[51.5073, -0.1276]}
             zoom={12}
             maxZoom={20}
-            minZoom={11}
+            minZoom={10}
             className={classes.mapSize}
             ref={mapRef}
         >
             <TileLayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" />
-            {zoom ? (
+            {bounds[4] >= 14 ? (
                 <MinClasterGroup bounds={bounds} />
             ) : (
                 <MaxClasterGroup
