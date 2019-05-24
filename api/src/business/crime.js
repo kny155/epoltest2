@@ -43,44 +43,44 @@ export const getCrimes = async (x1, y1, x2, y2) => {
 	return obj;
 };
 
-export const getCrimesLen = async id => {
+export const getCrimesLen = async (id, x, y) => {
 	const crime = await Crime.findOne({ id });
-	if (crime === null) {
-		const { data, len } = await getCrimes(x, y, x + 0.1, y - 0.1);
-		new Crime({ id, data, len }).save();
-		return len;
-	}
-	return crime.len;
-};
+		if (crime === null) {
+			const { data, len } = await getCrimes(x, y, x + 0.1, y - 0.1);
+			new Crime({ id, data, len }).save();
+			return len;
+		} 
+		return crime.len
+}
 
 export const getCrimesData = async ({ topY, botY, leftX, rightX }) => {
 	const data = [];
 
-	const y1 = Math.floor(topY * 10 + 1) / 10;
-	const y2 = Math.floor(botY * 10) / 10;
-	const x1 = Math.floor(leftX * 10) / 10;
-	const x2 = Math.ceil(rightX * 10) / 10;
+		const y1 = Math.floor(topY * 10 + 1) / 10;
+		const y2 = Math.floor(botY * 10) / 10;
+		const x1 = Math.floor(leftX * 10) / 10;
+		const x2 = Math.ceil(rightX * 10) / 10;
 
-	for (let i = x1; i < x2; i += 0.1) {
-		let j = y1;
-		for (j; j > y2; j -= 0.1) {
-			const x = i.toFixed(1);
-			const y = j.toFixed(1);
-			const id = x + '' + y;
-			const crime = await Crime.findOne({ id });
-			if (crime === null) {
-				const obj = await getCrimes(x, y, +x + 0.1, +y - 0.1);
-				new Crime({ id, data: obj.data, len: obj.len }).save();
-				data.push(...obj.data);
-			} else {
-				data.push(...crime.data);
+		for (let i = x1; i < x2; i += 0.1) {
+			let j = y1;
+			for (j; j > y2; j -= 0.1) {
+				const x = i.toFixed(1);
+				const y = j.toFixed(1);
+				const id = x + '' + y;
+				const crime = await Crime.findOne({ id });
+				if (crime === null) {
+					const obj = await getCrimes(x, y, +x + 0.1, +y - 0.1);
+					new Crime({ id, data: obj.data, len: obj.len }).save();
+					data.push(...obj.data);
+				} else {
+					data.push(...crime.data);
+				}
 			}
 		}
-	}
-	return data.filter(item => {
-		const x = item.location.longitude;
-		const y = item.location.latitude;
+		return data.filter(item => {
+			const x = item.location.longitude;
+			const y = item.location.latitude;
 
-		return x > leftX && x < rightX && y < topY && y > botY;
-	});
-};
+			return x > leftX && x < rightX && y < topY && y > botY;
+		});
+}
